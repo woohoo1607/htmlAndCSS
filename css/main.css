@@ -33,6 +33,7 @@ header {
   background-color: #FFF;
   position: sticky;
   top: -100px;
+  z-index: 300;
 }
 
 .header-content {
@@ -134,11 +135,46 @@ nav:hover #menu-logo{
   display: grid;
   grid-template-columns: repeat(10, 10% [col-start]);
   grid-template-rows: repeat(8, 1fr [col-start]);
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
 }
 
-.card:hover .card-title {
-  display: none;
+.card:hover .php {
+  opacity: 0;
+}
+
+.card:hover .js {
+  transform: scale(0);
+}
+
+.card:hover .net {
+  transform: scale(0) rotate(1turn);
+}
+
+.card:hover .qa {
+  transform: rotateY(0.25turn);
+}
+
+.card:hover .java {
+  transform: rotateX(0.25turn);
+}
+
+.card:hover .events {
+  width: 0;
+}
+
+.card:hover .blog {
+  height: 0;
+}
+
+.card:hover .events p,
+.card:hover .blog p,
+.card:hover .contacts p{
+  opacity: 0;
+}
+
+.card:hover .contacts {
+  margin-left: 100%;
+  width: 0;
 }
 
 .card {
@@ -155,9 +191,6 @@ nav:hover #menu-logo{
   position: absolute;
   z-index: 3;
   background-color: inherit;
-  transition-property: display;
-  transition-duration: 1s;
-  transition-timing-function: linear;
 }
 
 .card-description {
@@ -169,8 +202,10 @@ nav:hover #menu-logo{
   height: 100%;
   background-color: #fff;
   color: #000;
-  font-size: 15px;
+  font-size: 25px;
   overflow-y: auto;
+  padding: 5%;
+  font-weight: inherit;
 }
 
 .bsa {
@@ -188,6 +223,7 @@ nav:hover #menu-logo{
   font-size: 70px;
   text-transform: uppercase;
   font-weight: bold;
+  transition-duration: 1s;
 }
 
 .php {
@@ -196,6 +232,7 @@ nav:hover #menu-logo{
   grid-row: 1/4;
   font-size: 70px;
   font-style: italic;
+  transition: opacity 1s ease-in-out;
 }
 
 .qa {
@@ -206,6 +243,7 @@ nav:hover #menu-logo{
   justify-content: center;
   font-size: 70px;
   text-transform: uppercase;
+  transition-duration: 1s;
 }
 
 .java {
@@ -213,6 +251,7 @@ nav:hover #menu-logo{
   grid-column: 3/5;
   grid-row: 7/-1;
   font-size: 40px;
+  transition-duration: 1.5s;
 }
 
 .net {
@@ -221,23 +260,45 @@ nav:hover #menu-logo{
   grid-row: 4/-1;
   font-size: 70px;
   text-transform: uppercase;
+  transition-duration: 1s;
 }
 
 .events {
   background-color: gray;
   grid-column: 9/-1;
   grid-row: 4/6;
+  transition-property: width;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+}
+
+.events p {
+  transition: opacity 2s ease-in-out;
 }
 
 .blog {
   background-color: peru;
   grid-column: 9/-1;
   grid-row: 6/8;
+  transition-property: height;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+}
+
+.blog p {
+  transition: opacity 2s ease-in-out;
 }
 
 .contacts {
   background-color: cornflowerblue;
   grid-column: 9/-1;
+  transition-property: margin-left, width;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+
+.contacts p {
+  transition: opacity 1s ease-in-out;
 }
 
 .black-text {
@@ -285,4 +346,95 @@ nav:hover #menu-logo{
 
 .error {
   background-color: red;
+}
+
+
+@media screen and (max-width: 1099px) {
+  .center {
+    width: 98%;
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr [col-start]);
+    grid-template-rows: repeat(16, 1fr [col-start]);
+    height: max-content;
+  }
+  .qa {
+    grid-row: 5/9;
+  }
+  .php {
+    grid-column: 1/-1;
+    grid-row: 9/12;
+  }
+  .java {
+    background-color: pink;
+    grid-column: 3/-1;
+    grid-row: 7/9;
+    font-size: 40px;
+    transition-duration: 1.5s;
+  }
+  .net {
+    grid-column: 1/4;
+    grid-row: 12/-1;
+  }
+  .events {
+    grid-column: 4/-1;
+    grid-row: 12/13;
+  }
+  .blog {
+    grid-column: 4/-1;
+    grid-row: 13/15;
+  }
+  .contacts {
+    grid-column: 4/-1;
+    grid-row: 15/-1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(500px, auto);
+    height: max-content;
+    grid-row-start: 1;
+    grid-row-end: 9;
+  }
+  .bsa {
+    grid-row: 1/1;
+    grid-column: 1/1;
+  }
+  .js {
+    grid-row: 2/2;
+    grid-column: 1;
+  }
+  .php {
+    grid-row: 3/3;
+    grid-column: 1;
+  }
+  .qa  {
+    grid-row: 4/4;
+    grid-column: 1;
+  }
+  .java  {
+    grid-row: 5/5;
+    grid-column: 1;
+  }
+  .net  {
+    grid-row: 6/6;
+    grid-column: 1;
+  }
+  .blog {
+    grid-row: 7/7;
+    grid-column: 1;
+  }
+  .events {
+    grid-row: 8/8;
+    grid-column: 1;
+  }
+  .contacts {
+    grid-row: 9/9;
+    grid-column: 1;
+  }
 }
